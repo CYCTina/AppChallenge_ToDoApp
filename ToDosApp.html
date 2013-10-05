@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<style>
+
+			section{
+				margin-bottom:20px;
+			}
+
+			footer{
+				font-size:13px;
+				font-style: italic;
+			}
+
+			span{
+				font-weight:bold;
+			}
+
+		</style>  
+		
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script>
+
+			function returnDate(){
+
+				var d = new Date();
+				var curr_day = d.getDay();
+			    var curr_date = d.getDate();
+			    var curr_month = d.getMonth() + 1; //Months are zero based
+			    var curr_year = d.getFullYear();
+
+			    var weekday=new Array( "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday");
+			    var month = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", 
+										"October", "November", "December");
+
+				var strday = weekday[curr_day];
+				var strmonth = month[curr_month];
+
+			    var rValue = strday + ', ' + curr_date + '-' + strmonth + '-' + curr_year;
+				document.getElementById("dateHeader").innerHTML = rValue;
+			}
+
+
+			$(document).ready(function(){
+			  $("#btnAdd").click(function(){
+			  	var newToDo=document.getElementById("txtTodoItem").value;
+			    $("p").prepend("<input type='checkbox' name='todo'><span>"+newToDo+"<br/></span>");
+			    $("input:text").val("");
+			  });
+			 
+			});
+
+
+				
+			$(document).ready(function(){
+			$('#ToDoList').on('click', "input[name='todo']", function(){
+				var isChecked = this.checked
+				if (isChecked == true){
+					$(this).next().remove();
+					$(this).remove();	
+				}
+				if (isChecked == false)
+				{
+					//nothing 
+				}
+						
+					});
+
+
+				});
+
+
+		</script>
+
+
+		<meta charset="utf-8">
+		<title>Manage My To-Do List</title>
+
+	</head>
+	
+	<body onload="returnDate()">
+		<h1>My To-Do List</h1>	
+		<article>
+			<header id="dateHeader"></header>
+			<section>
+					<p id="ToDoList"></p>
+					<input type="text" name="newToDo" id="txtTodoItem"></textarea>
+					<button id="btnAdd">Add</button>
+			</section>
+			<footer>Code Fellows App Challenges | Created by Tina Chen</footer>
+		</article>
+	</body>
+
+
+
+</html>
